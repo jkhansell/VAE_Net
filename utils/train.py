@@ -1,28 +1,69 @@
 import torch
-from torch.utils.data import DataLoader
-import model.variational_autoencoder as VAE
-import dataloader.tiffloader as TiffLoad
-import os
+import torch.nn.functional as F
 
-if __name__ == "__main__":
+def KL_MSE_lossfn(reconstructed, target, mu, logvar, alpha=1.0, beta=1.0):
+    """
+    Computes the combined loss with KL divergence and Mean Squared Error.
 
-    image_shape = (3, 2**7, 2**7)
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    Parameters:
+    - reconstructed: Tensor, the reconstructed output from the model.
+    - target: Tensor, the ground truth or input data.
+    - mean: Tensor, the mean vector from the encoder.
+    - logvar: Tensor, the log-variance vector from the encoder.
+    - alpha: float, weight for the MSE loss.
+    - beta: float, weight for the KL divergence loss.
 
-    tifs = [file for file in os.listdir("./images") if file.endswith(".tif")]
-    segment_size = 128  # Example: 128x128 segments
-    stride = 64         # Overlap between segments
-    dataset = TiffLoad.TiffDataset(os.path.join("images",tifs[0]), segment_size, stride)
-    dataloader = DataLoader(dataset, batch_size=32, shuffle=True, num_workers=4)
+    Returns:
+    - loss: Tensor, the total combined loss.
+    """
+    # Mean Squared Error (Reconstruction Loss)
+    mse_loss = F.mse_loss(reconstructed, target, reduction='mean')
 
-    model = VAE.VariationalAutoencoder(
-        img_shp=image_shape, 
-        first_features_count=16, 
-        activation_encoder=torch.nn.functional.elu,
-        activation_decoder=torch.nn.functional.elu,
-        segmentation_classes=9
-    ).to(device)
+    # KL Divergence Loss
+    kl_div_loss = torch.mean(-0.5 * torch.sum(1 + logvar - mean.pow(2) - logvar.exp()))
 
+    # Combined Loss
+    total_loss = alpha * mse_loss + beta * kl_div_loss
+
+    return total_loss
+
+class VAE_Trainer():
+    def __init__(model, lod, lossfns, optimizer, load_chkpt):
+        self.model = model
+        self.optimizer = optimizer
+        self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
+        if load_chkpt:
+            self.load_chkpt()
+        
+        self.model.to(device)
+        self.lossfns = lossfns
+
+
+    def load_chkpt(self):
+        return
     
-    img = torch.randn((1, 3, 2**7, 2**7)).to(device)"""
-    
+    def save_chkpt(self):
+        return
+
+    def train(self, epochs, lod, output_iters):
+        for epoch in range(epochs):
+            losses = np.zeros(len(self.lossfns), dtype=np.float32)
+            for batch in dataloader:
+                y = self.model.forward(batch.to(device), lod)
+                model.zero_grad() # zero out optimizer
+                for i, value in enumerate(zip(y, self.lossfns, batch)):
+                    out, lossfn, x = value
+                    loss = lossfn(out, x)
+                    loss.backward()
+                    losses[i] += loss
+                
+                self.optimizer.step()
+            if epoch % output_iters == 0:
+                print("Epoch: {}, ELBO") 
+                
+
+
+
+
+    return

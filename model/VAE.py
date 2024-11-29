@@ -6,25 +6,29 @@ import numpy as np
 # https://github.dev/jgwiese/gdemo_pancreassegmentation/blob/master/src/Autoencoder.py
 
 class VariationalAutoencoder(nn.Module):
-    def __init__(self, img_shp, first_features_count, activation_encoder, activation_decoder, segmentation_classes):
+    def __init__(self, img_shp, first_features_count, activation_encoder, activation_decoder, segmentation=False, segmentation_classes=None):
         super(VariationalAutoencoder, self).__init__()
 
         self.img_shp = img_shp
         self.first_features_count = first_features_count
+        self.segmentation = segmentation
         self.segmentation_classes = segmentation_classes
 
         self.encoder = VariationalEncoder(img_shp=img_shp, first_features_count=first_features_count, activation=activation_encoder)
         self.decoder = VariationalDecoder(img_shp=img_shp, first_features_count=first_features_count, activation=activation_decoder, segmentation=False)
-        self.decoder_seg = VariationalDecoder(img_shp=img_shp, first_features_count=first_features_count, activation=activation_decoder, 
+        if self.segmentation:
+            self.decoder_seg = VariationalDecoder(img_shp=img_shp, first_features_count=first_features_count, activation=activation_decoder, 
                                                 segmentation=True, segmentation_classes=segmentation_classes)
 
     def forward(self, x, level_of_detail):
         level_of_detail = level_of_detail - 2
         z, mu, logVar, shape = self.encoder.forward(x, level_of_detail)
         x_reconstructed = self.decoder.forward(z, level_of_detail, shape)
-        x_segmentation = self.decoder_seg.forward(z, level_of_detail, shape, detach=True)
-
-        return ((x_reconstructed, mu, logVar), x_segmentation)
+        if self.segmentation:
+            x_segmentation = self.decoder_seg.forward(z, level_of_detail, shape, detach=True)
+            return ((x_reconstructed, mu, logVar), x_segmentation)
+        else:
+            return (x_reconstructed, mu, logVar)
 
 class VariationalEncoder(nn.Module):
     def __init__(self, img_shp, first_features_count, activation):
@@ -72,7 +76,6 @@ class VariationalEncoder(nn.Module):
             current_channels = out_channels
             current_height = (current_height - self.kernel_size + 2*self.padding) // self.stride + 1
             current_width = (current_width - self.kernel_size + 2*self.padding) // self.stride + 1
-
 
             in_features = current_channels*current_height*current_width
             code_length = int(2**(level+2))
@@ -170,7 +173,7 @@ class VariationalDecoder(nn.Module):
             
 
         if self.segmentation:
-            x = self.segmentation_layer(self.decoding_layers[0](x))
+            x = self.activation(self.segmentation_layer(self.decoding_layers[0](x)))
         else:
             x = self.activation(self.decoding_layers[0](x)) 
         return x
