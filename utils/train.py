@@ -28,8 +28,9 @@ def KL_MSE_lossfn(reconstructed, target, mu, logvar, alpha=1.0, beta=1.0):
     return total_loss
 
 class VAE_Trainer():
-    def __init__(model, lod, lossfns, optimizer, load_chkpt):
+    def __init__(model, optimizer, lossfns, lod, model_path, load_chkpt):
         self.model = model
+        self.model_path = model_path
         self.optimizer = optimizer
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
@@ -41,14 +42,31 @@ class VAE_Trainer():
 
 
     def load_chkpt(self):
-        return
+        
+        chkptPath = join(self.model_path, 'model-checkpoint.pt')
+        chkpt = torch.load(chkptPath)
+
+        self.model.load_state_dict(checkpoint['model_state_dict'])
+        self.optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
+        
+        for state in self.optimizer.state.values():
+            for k, v in state.items():
+                if torch.is_tensor(v):
+                    state[k] = v.to(self.device)
     
     def save_chkpt(self):
-        return
+        chkptPath = join(self.model_path, 'model-checkpoint.pt')
+        
+        torch.save({
+                    'model_state_dict': self.model.state_dict(),
+                    'optimizer_state_dict': self.optimizer.state_dict(),
+                }, chkptPath)
 
-    def train(self, epochs, lod, output_iters):
+    def train(self, dataloader, epochs, lod, output_iters):
+        self.train_loss = np.zeros(epochs, len(self.lossfns), dtype=np.float32)
         for epoch in range(epochs):
             losses = np.zeros(len(self.lossfns), dtype=np.float32)
+            batches = 0
             for batch in dataloader:
                 y = self.model.forward(batch.to(device), lod)
                 model.zero_grad() # zero out optimizer
@@ -57,13 +75,43 @@ class VAE_Trainer():
                     loss = lossfn(out, x)
                     loss.backward()
                     losses[i] += loss
-                
+            
+            self.train_loss[epoch] = losses
                 self.optimizer.step()
+
             if epoch % output_iters == 0:
-                print("Epoch: {}, ELBO") 
-                
+                losses /= batches
+                print("Epoch: {:.04f}, ELBO+MSE loss: {:.04f}".format(
+                    losses[0]
+                )) 
+        return
+    
+    def evaluate(self, dataloader, lod):
+        self.model.eval()
+        self.eval_loss = np.zeros(len(dataloader), len(self.lossfns), dtype=np.float32)
+        batches = 0
+        for batch in dataloader:
+            y = self.model.forward(batch.to(device), lod)
+            for i, value in enumerate(zip(y, self.lossfns, batch)):
+                out, lossfn, x = value
+                loss = lossfn(out, x)
+                loss.backward()
+                losses[i] += loss
+    
+    def plot_losses(self):
+        plt.figure(figsize=(10, 7))
 
-
-
-
-    return
+        # Loss plots.
+        plt.figure(figsize=(10, 7))
+        plt.plot(
+            self.train_loss, color='tab:blue', linestyle='-', 
+            label='train loss'
+        )
+        plt.plot(
+            self.eval_loss, color='tab:red', linestyle='-', 
+            label='validataion loss'
+        )
+        plt.xlabel('Epochs')
+        plt.ylabel('Loss')
+        plt.legend()
+        plt.savefig(os.path.join('output_loss.png'))
