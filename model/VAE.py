@@ -5,32 +5,55 @@ import numpy as np
 # Partially based on the autoencoder in 
 # https://github.dev/jgwiese/gdemo_pancreassegmentation/blob/master/src/Autoencoder.py
 
+
 class VariationalAutoencoder(nn.Module):
-    def __init__(self, img_shp, first_features_count, activation_encoder, activation_decoder, segmentation=False, segmentation_classes=None):
+    """
+    Variational Autoencoder implementation with modular encoder and decoder.
+    Allows flexibility in levels of detail and latent space size.
+    """
+    def __init__(self, img_shp, first_features_count, activation_encoder, activation_decoder):
         super(VariationalAutoencoder, self).__init__()
 
         self.img_shp = img_shp
         self.first_features_count = first_features_count
-        self.segmentation = segmentation
-        self.segmentation_classes = segmentation_classes
 
-        self.encoder = VariationalEncoder(img_shp=img_shp, first_features_count=first_features_count, activation=activation_encoder)
-        self.decoder = VariationalDecoder(img_shp=img_shp, first_features_count=first_features_count, activation=activation_decoder, segmentation=False)
-        if self.segmentation:
-            self.decoder_seg = VariationalDecoder(img_shp=img_shp, first_features_count=first_features_count, activation=activation_decoder, 
-                                                segmentation=True, segmentation_classes=segmentation_classes)
+        self.encoder = VariationalEncoder(
+            img_shp=img_shp,
+            first_features_count=first_features_count,
+            activation=activation_encoder
+        )
+
+        self.decoder = VariationalDecoder(
+            img_shp=img_shp,
+            first_features_count=first_features_count,
+            activation=activation_decoder,
+            segmentation=False
+        )
 
     def forward(self, x, level_of_detail):
-        level_of_detail = level_of_detail - 2
+        """
+        Forward pass for the VAE. Encodes the input, samples from the latent space,
+        and decodes the result.
+
+        Args:
+            x: Input tensor.
+            level_of_detail: Depth of encoding/decoding (number of layers).
+
+        Returns:
+            x_reconstructed: Reconstructed input.
+            mu: Mean of latent distribution.
+            logVar: Log variance of latent distribution.
+        """
+        level_of_detail -= 2
         z, mu, logVar, shape = self.encoder.forward(x, level_of_detail)
         x_reconstructed = self.decoder.forward(z, level_of_detail, shape)
-        if self.segmentation:
-            x_segmentation = self.decoder_seg.forward(z, level_of_detail, shape, detach=True)
-            return ((x_reconstructed, mu, logVar), x_segmentation)
-        else:
-            return (x_reconstructed, mu, logVar)
+
+        return ((x_reconstructed, mu, logVar, z),)
 
 class VariationalEncoder(nn.Module):
+    """
+    Encoder module for the VAE, implementing the reparameterization trick.
+    """
     def __init__(self, img_shp, first_features_count, activation):
         super(VariationalEncoder, self).__init__()
 
@@ -96,7 +119,7 @@ class VariationalEncoder(nn.Module):
         for layer in range(level_of_detail):
             x = self.activation(self.encoding_layers[layer](x))
             
-        x = self.activation(self.encoding_layers[level_of_detail](x))
+        x = self.encoding_layers[level_of_detail](x)
 
         # Variation Encoder
         shape = x.shape
@@ -157,12 +180,13 @@ class VariationalDecoder(nn.Module):
 
             self.zDecodingLayers.append(nn.Linear(in_features=code_length, out_features=in_features))
 
-            if self.segmentation:
-                self.segmentation_layer = nn.Conv2d(
-                    in_channels=img_shp[0], 
-                    out_channels=self.segmentation_classes,
-                    kernel_size=1
-                )
+        if self.segmentation:
+            self.segmentation_layer = nn.Conv2d(
+                in_channels=current_channels, 
+                out_channels=self.segmentation_classes,
+                kernel_size=1
+            )
+        
 
     def decode(self, z, level_of_detail, shape):
         x = self.activation(self.zDecodingLayers[level_of_detail](z)).reshape(shape)
@@ -175,7 +199,7 @@ class VariationalDecoder(nn.Module):
         if self.segmentation:
             x = self.activation(self.segmentation_layer(self.decoding_layers[0](x)))
         else:
-            x = self.activation(self.decoding_layers[0](x)) 
+            x = self.decoding_layers[0](x) 
         return x
 
     def forward(self, z, level_of_detail, shape, detach=False):

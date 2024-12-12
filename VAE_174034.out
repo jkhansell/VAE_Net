@@ -1,0 +1,16 @@
+Traceback (most recent call last):
+  File "/work/jovillalobos/VAE_Net/main.py", line 48, in <module>
+    execute_VAE_training()
+  File "/work/jovillalobos/VAE_Net/main.py", line 25, in execute_VAE_training
+    dataset = TiffDataset("./data/images/image_01.tif", 2**7, 64, device=device, lod=lod)
+  File "/work/jovillalobos/VAE_Net/data/tiffdataset.py", line 12, in __init__
+    self.image = tiff.imread(tiff_path)  # Load TIFF file as a numpy array
+  File "/work/jovillalobos/mambaforge-pypy3/envs/pytorch-cuda/lib/python3.10/site-packages/tifffile/tifffile.py", line 1253, in imread
+    with TiffFile(
+  File "/work/jovillalobos/mambaforge-pypy3/envs/pytorch-cuda/lib/python3.10/site-packages/tifffile/tifffile.py", line 4318, in __init__
+    fh = FileHandle(file, mode=mode, name=name, offset=offset, size=size)
+  File "/work/jovillalobos/mambaforge-pypy3/envs/pytorch-cuda/lib/python3.10/site-packages/tifffile/tifffile.py", line 14727, in __init__
+    self.open()
+  File "/work/jovillalobos/mambaforge-pypy3/envs/pytorch-cuda/lib/python3.10/site-packages/tifffile/tifffile.py", line 14746, in open
+    self._fh = open(self._file, self._mode, encoding=None)
+FileNotFoundError: [Errno 2] No such file or directory: '/work/jovillalobos/VAE_Net/data/images/image_01.tif'

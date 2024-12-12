@@ -1,0 +1,400 @@
+Training loss: 0.037
+Validation loss: 0.030
+Learning rate: 5e-05
+--------------------------------------------------
+Training loss: 0.030
+Validation loss: 0.029
+Learning rate: 4.75e-05
+--------------------------------------------------
+Training loss: 0.030
+Validation loss: 0.028
+Learning rate: 4.5125e-05
+--------------------------------------------------
+Training loss: 0.029
+Validation loss: 0.029
+Learning rate: 4.2868749999999995e-05
+--------------------------------------------------
+Training loss: 0.030
+Validation loss: 0.029
+Learning rate: 4.072531249999999e-05
+--------------------------------------------------
+Training loss: 0.030
+Validation loss: 0.031
+Learning rate: 3.868904687499999e-05
+--------------------------------------------------
+Training loss: 0.029
+Validation loss: 0.029
+Learning rate: 3.675459453124999e-05
+--------------------------------------------------
+Training loss: 0.030
+Validation loss: 0.030
+Learning rate: 3.4916864804687486e-05
+--------------------------------------------------
+Training loss: 0.030
+Validation loss: 0.029
+Learning rate: 3.317102156445311e-05
+--------------------------------------------------
+Training loss: 0.030
+Validation loss: 0.028
+Learning rate: 3.151247048623045e-05
+--------------------------------------------------
+Training loss: 0.030
+Validation loss: 0.029
+Learning rate: 2.993684696191893e-05
+--------------------------------------------------
+Training loss: 0.029
+Validation loss: 0.030
+Learning rate: 2.844000461382298e-05
+--------------------------------------------------
+Training loss: 0.030
+Validation loss: 0.030
+Learning rate: 2.7018004383131832e-05
+--------------------------------------------------
+Training loss: 0.029
+Validation loss: 0.030
+Learning rate: 2.566710416397524e-05
+--------------------------------------------------
+Training loss: 0.029
+Validation loss: 0.029
+Learning rate: 2.4383748955776477e-05
+--------------------------------------------------
+Training loss: 0.029
+Validation loss: 0.031
+Learning rate: 2.3164561507987653e-05
+--------------------------------------------------
+Training loss: 0.029
+Validation loss: 0.029
+Learning rate: 2.2006333432588268e-05
+--------------------------------------------------
+Training loss: 0.029
+Validation loss: 0.029
+Learning rate: 2.0906016760958855e-05
+--------------------------------------------------
+Training loss: 0.029
+Validation loss: 0.028
+Learning rate: 1.986071592291091e-05
+--------------------------------------------------
+Training loss: 0.030
+Validation loss: 0.030
+Learning rate: 1.8867680126765363e-05
+--------------------------------------------------
+Training loss: 0.030
+Validation loss: 0.029
+Learning rate: 1.7924296120427095e-05
+--------------------------------------------------
+Training loss: 0.029
+Validation loss: 0.029
+Learning rate: 1.702808131440574e-05
+--------------------------------------------------
+Training loss: 0.029
+Validation loss: 0.029
+Learning rate: 1.6176677248685452e-05
+--------------------------------------------------
+Training loss: 0.030
+Validation loss: 0.029
+Learning rate: 1.5367843386251178e-05
+--------------------------------------------------
+Training loss: 0.030
+Validation loss: 0.029
+Learning rate: 1.4599451216938618e-05
+--------------------------------------------------
+Training loss: 0.030
+Validation loss: 0.028
+Learning rate: 1.3869478656091687e-05
+--------------------------------------------------
+Training loss: 0.029
+Validation loss: 0.028
+Learning rate: 1.3176004723287102e-05
+--------------------------------------------------
+Training loss: 0.029
+Validation loss: 0.030
+Learning rate: 1.2517204487122746e-05
+--------------------------------------------------
+Training loss: 0.029
+Validation loss: 0.029
+Learning rate: 1.1891344262766608e-05
+--------------------------------------------------
+Training loss: 0.030
+Validation loss: 0.029
+Learning rate: 1.1296777049628277e-05
+--------------------------------------------------
+Training loss: 0.029
+Validation loss: 0.028
+Learning rate: 1.0731938197146863e-05
+--------------------------------------------------
+Training loss: 0.030
+Validation loss: 0.029
+Learning rate: 1.019534128728952e-05
+--------------------------------------------------
+Training loss: 0.030
+Validation loss: 0.029
+Learning rate: 9.685574222925043e-06
+--------------------------------------------------
+Training loss: 0.030
+Validation loss: 0.030
+Learning rate: 9.20129551177879e-06
+--------------------------------------------------
+Training loss: 0.030
+Validation loss: 0.031
+Learning rate: 8.74123073618985e-06
+--------------------------------------------------
+Training loss: 0.029
+Validation loss: 0.028
+Learning rate: 8.304169199380357e-06
+--------------------------------------------------
+Training loss: 0.030
+Validation loss: 0.027
+Learning rate: 7.888960739411339e-06
+--------------------------------------------------
+Training loss: 0.029
+Validation loss: 0.029
+Learning rate: 7.494512702440772e-06
+--------------------------------------------------
+Training loss: 0.030
+Validation loss: 0.029
+Learning rate: 7.119787067318733e-06
+--------------------------------------------------
+Training loss: 0.030
+Validation loss: 0.031
+Learning rate: 6.763797713952796e-06
+--------------------------------------------------
+Training loss: 0.030
+Validation loss: 0.030
+Learning rate: 6.425607828255156e-06
+--------------------------------------------------
+Training loss: 0.029
+Validation loss: 0.030
+Learning rate: 6.104327436842398e-06
+--------------------------------------------------
+Training loss: 0.029
+Validation loss: 0.029
+Learning rate: 5.799111065000278e-06
+--------------------------------------------------
+Training loss: 0.030
+Validation loss: 0.029
+Learning rate: 5.5091555117502635e-06
+--------------------------------------------------
+Training loss: 0.030
+Validation loss: 0.028
+Learning rate: 5.23369773616275e-06
+--------------------------------------------------
+Training loss: 0.029
+Validation loss: 0.028
+Learning rate: 4.972012849354612e-06
+--------------------------------------------------
+Training loss: 0.029
+Validation loss: 0.030
+Learning rate: 4.723412206886882e-06
+--------------------------------------------------
+Training loss: 0.029
+Validation loss: 0.030
+Learning rate: 4.487241596542537e-06
+--------------------------------------------------
+Training loss: 0.030
+Validation loss: 0.028
+Learning rate: 4.26287951671541e-06
+--------------------------------------------------
+Training loss: 0.030
+Validation loss: 0.028
+Learning rate: 4.04973554087964e-06
+--------------------------------------------------
+Training loss: 0.030
+Validation loss: 0.028
+Learning rate: 3.8472487638356575e-06
+--------------------------------------------------
+Training loss: 0.029
+Validation loss: 0.028
+Learning rate: 3.6548863256438744e-06
+--------------------------------------------------
+Training loss: 0.029
+Validation loss: 0.030
+Learning rate: 3.4721420093616805e-06
+--------------------------------------------------
+Training loss: 0.029
+Validation loss: 0.028
+Learning rate: 3.2985349088935963e-06
+--------------------------------------------------
+Training loss: 0.030
+Validation loss: 0.028
+Learning rate: 3.1336081634489165e-06
+--------------------------------------------------
+Training loss: 0.030
+Validation loss: 0.031
+Learning rate: 2.9769277552764705e-06
+--------------------------------------------------
+Training loss: 0.029
+Validation loss: 0.028
+Learning rate: 2.8280813675126467e-06
+--------------------------------------------------
+Training loss: 0.030
+Validation loss: 0.028
+Learning rate: 2.6866772991370143e-06
+--------------------------------------------------
+Training loss: 0.030
+Validation loss: 0.029
+Learning rate: 2.5523434341801634e-06
+--------------------------------------------------
+Training loss: 0.030
+Validation loss: 0.031
+Learning rate: 2.424726262471155e-06
+--------------------------------------------------
+Training loss: 0.029
+Validation loss: 0.030
+Learning rate: 2.3034899493475972e-06
+--------------------------------------------------
+Training loss: 0.029
+Validation loss: 0.028
+Learning rate: 2.1883154518802173e-06
+--------------------------------------------------
+Training loss: 0.030
+Validation loss: 0.031
+Learning rate: 2.0788996792862064e-06
+--------------------------------------------------
+Training loss: 0.029
+Validation loss: 0.030
+Learning rate: 1.974954695321896e-06
+--------------------------------------------------
+Training loss: 0.029
+Validation loss: 0.030
+Learning rate: 1.8762069605558012e-06
+--------------------------------------------------
+Training loss: 0.029
+Validation loss: 0.029
+Learning rate: 1.782396612528011e-06
+--------------------------------------------------
+Training loss: 0.030
+Validation loss: 0.029
+Learning rate: 1.6932767819016104e-06
+--------------------------------------------------
+Training loss: 0.029
+Validation loss: 0.029
+Learning rate: 1.6086129428065298e-06
+--------------------------------------------------
+Training loss: 0.030
+Validation loss: 0.027
+Learning rate: 1.5281822956662034e-06
+--------------------------------------------------
+Training loss: 0.029
+Validation loss: 0.031
+Learning rate: 1.451773180882893e-06
+--------------------------------------------------
+Training loss: 0.030
+Validation loss: 0.030
+Learning rate: 1.3791845218387483e-06
+--------------------------------------------------
+Training loss: 0.030
+Validation loss: 0.030
+Learning rate: 1.3102252957468109e-06
+--------------------------------------------------
+Training loss: 0.029
+Validation loss: 0.029
+Learning rate: 1.2447140309594702e-06
+--------------------------------------------------
+Training loss: 0.030
+Validation loss: 0.030
+Learning rate: 1.1824783294114966e-06
+--------------------------------------------------
+Training loss: 0.029
+Validation loss: 0.027
+Learning rate: 1.1233544129409218e-06
+--------------------------------------------------
+Training loss: 0.030
+Validation loss: 0.029
+Learning rate: 1.0671866922938757e-06
+--------------------------------------------------
+Training loss: 0.029
+Validation loss: 0.029
+Learning rate: 1.013827357679182e-06
+--------------------------------------------------
+Training loss: 0.030
+Validation loss: 0.029
+Learning rate: 9.631359897952228e-07
+--------------------------------------------------
+Training loss: 0.028
+Validation loss: 0.028
+Learning rate: 9.149791903054616e-07
+--------------------------------------------------
+Training loss: 0.029
+Validation loss: 0.030
+Learning rate: 8.692302307901885e-07
+--------------------------------------------------
+Training loss: 0.030
+Validation loss: 0.031
+Learning rate: 8.25768719250679e-07
+--------------------------------------------------
+Training loss: 0.030
+Validation loss: 0.029
+Learning rate: 7.844802832881451e-07
+--------------------------------------------------
+Training loss: 0.029
+Validation loss: 0.029
+Learning rate: 7.452562691237378e-07
+--------------------------------------------------
+Training loss: 0.030
+Validation loss: 0.031
+Learning rate: 7.079934556675509e-07
+--------------------------------------------------
+Training loss: 0.030
+Validation loss: 0.029
+Learning rate: 6.725937828841734e-07
+--------------------------------------------------
+Training loss: 0.030
+Validation loss: 0.028
+Learning rate: 6.389640937399646e-07
+--------------------------------------------------
+Training loss: 0.030
+Validation loss: 0.030
+Learning rate: 6.070158890529664e-07
+--------------------------------------------------
+Training loss: 0.029
+Validation loss: 0.030
+Learning rate: 5.76665094600318e-07
+--------------------------------------------------
+Training loss: 0.030
+Validation loss: 0.028
+Learning rate: 5.478318398703021e-07
+--------------------------------------------------
+Training loss: 0.030
+Validation loss: 0.029
+Learning rate: 5.204402478767869e-07
+--------------------------------------------------
+Training loss: 0.030
+Validation loss: 0.030
+Learning rate: 4.944182354829475e-07
+--------------------------------------------------
+Training loss: 0.029
+Validation loss: 0.028
+Learning rate: 4.6969732370880014e-07
+--------------------------------------------------
+Training loss: 0.030
+Validation loss: 0.029
+Learning rate: 4.462124575233601e-07
+--------------------------------------------------
+Training loss: 0.029
+Validation loss: 0.029
+Learning rate: 4.2390183464719205e-07
+--------------------------------------------------
+Training loss: 0.030
+Validation loss: 0.031
+Learning rate: 4.0270674291483245e-07
+--------------------------------------------------
+Training loss: 0.030
+Validation loss: 0.029
+Learning rate: 3.825714057690908e-07
+--------------------------------------------------
+Training loss: 0.030
+Validation loss: 0.027
+Learning rate: 3.6344283548063624e-07
+--------------------------------------------------
+Training loss: 0.029
+Validation loss: 0.029
+Learning rate: 3.452706937066044e-07
+--------------------------------------------------
+Training loss: 0.029
+Validation loss: 0.029
+Learning rate: 3.280071590212742e-07
+--------------------------------------------------
+Training loss: 0.029
+Validation loss: 0.029
+Learning rate: 3.1160680107021047e-07
+--------------------------------------------------
